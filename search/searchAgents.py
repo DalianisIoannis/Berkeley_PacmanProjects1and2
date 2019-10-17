@@ -510,8 +510,10 @@ class ClosestDotSearchAgent(SearchAgent):
     def registerInitialState(self, state):
         self.actions = []
         currentState = state
+        print "registerInitialState me currentstate",currentState
         while(currentState.getFood().count() > 0):
             nextPathSegment = self.findPathToClosestDot(currentState) # The missing piece
+            print "to nextPathSegment einai", nextPathSegment
             self.actions += nextPathSegment
             for action in nextPathSegment:
                 legal = currentState.getLegalActions()
@@ -532,9 +534,10 @@ class ClosestDotSearchAgent(SearchAgent):
         food = gameState.getFood()
         walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState)
-
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        # return search.breadthFirstForFood(problem)
+        return search.breadthFirstSearch(problem)
+        # util.raiseNotDefined()
 
 class AnyFoodSearchProblem(PositionSearchProblem):
     """
@@ -568,9 +571,12 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         complete the problem definition.
         """
         x,y = state
-
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        flag = False
+        if state in self.food.asList():
+            flag=True
+        return flag
+        # util.raiseNotDefined()
 
 def mazeDistance(point1, point2, gameState):
     """

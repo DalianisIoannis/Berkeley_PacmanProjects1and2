@@ -81,6 +81,7 @@ def DFS_BFS(problem,data_structure):#used for implementing DFS and BFS
     while not data_structure.isEmpty():
         node_popped=data_structure.pop()
         if problem.isGoalState(node_popped[0]):     #have i found node i am loooking for?
+            # print "o typos", type(node_popped[1])
             return node_popped[1]    #return total movements for reaching node
         if node_popped[0] not in have_visited:
             have_visited[ node_popped[0] ]="Visited"
@@ -120,6 +121,21 @@ def breadthFirstSearch(problem):
     my_queue = util.Queue() #BFS works with the logic of a queue
     return DFS_BFS(problem,my_queue)
     # util.raiseNotDefined()
+
+# def breadthFirstForFood(problem):
+#     my_q=util.Queue()
+#     node_now=problem.getStartState()
+#     my_route=list()
+#     have_visited=list()
+#     first_node=problem.getStartState()
+#     have_visited.append(first_node)
+#     while not problem.isGoalState(node_now):
+#         for succ, act, ncost in problem.getSuccessors(node_now):
+#             if succ not in have_visited:
+#                 have_visited.append(succ)
+#                 my_q.push( (succ, my_route+[act]) )
+#         node_now, my_route=my_q.pop()
+#     return my_route
 
 def nullHeuristic(state, problem=None):
     """
