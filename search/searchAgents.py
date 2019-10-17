@@ -69,10 +69,8 @@ class SearchAgent(Agent):
       depthFirstSearch or dfs
       breadthFirstSearch or bfs
 
-
     Note: You should NOT change any code in SearchAgent
     """
-
     def __init__(self, fn='depthFirstSearch', prob='PositionSearchProblem', heuristic='nullHeuristic'):
         # Warning: some advanced Python magic is employed below to find the right functions and problems
 
@@ -488,6 +486,7 @@ def foodHeuristic(state, problem):
     If you want access to info like walls, capsules, etc., you can query the
     problem.  For example, problem.walls gives you a Grid of where the walls
     are.
+        return search.breadthFirstForFood(problem)
     If you want to *store* information to be reused in other calls to the
     heuristic, there is a dictionary called problem.heuristicInfo that you can
     use. For example, if you only want to count the walls once and store that
@@ -535,7 +534,6 @@ class ClosestDotSearchAgent(SearchAgent):
         walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState)
         "*** YOUR CODE HERE ***"
-        # return search.breadthFirstForFood(problem)
         return search.breadthFirstSearch(problem)
         # util.raiseNotDefined()
 
@@ -570,7 +568,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         The state is Pacman's position. Fill this in with a goal test that will
         complete the problem definition.
         """
-        x,y = state
+        # x,y = state
         "*** YOUR CODE HERE ***"
         flag = False
         if state in self.food.asList():

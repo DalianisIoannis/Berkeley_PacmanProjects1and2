@@ -122,21 +122,6 @@ def breadthFirstSearch(problem):
     return DFS_BFS(problem,my_queue)
     # util.raiseNotDefined()
 
-# def breadthFirstForFood(problem):
-#     my_q=util.Queue()
-#     node_now=problem.getStartState()
-#     my_route=list()
-#     have_visited=list()
-#     first_node=problem.getStartState()
-#     have_visited.append(first_node)
-#     while not problem.isGoalState(node_now):
-#         for succ, act, ncost in problem.getSuccessors(node_now):
-#             if succ not in have_visited:
-#                 have_visited.append(succ)
-#                 my_q.push( (succ, my_route+[act]) )
-#         node_now, my_route=my_q.pop()
-#     return my_route
-
 def nullHeuristic(state, problem=None):
     """
     A heuristic function estimates the cost from the current state to the nearest
@@ -181,6 +166,7 @@ def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
     ####################################################################################
+    #####
     # starting from the second node because i don't want the first action
     # action_so_far=lambda path: problem.getCostOfActions([x[1] for x in path][1:])
     #isos kai [:]
