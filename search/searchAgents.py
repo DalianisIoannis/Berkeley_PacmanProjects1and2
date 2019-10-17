@@ -394,8 +394,9 @@ def cornersHeuristic(state, problem):
     shortest path from the state to a goal of the problem; i.e.  it should be
     admissible (as well as consistent).
     """
-    corners = problem.corners # These are the corner coordinates
-    walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
+    #those are not needed
+    # corners = problem.corners # These are the corner coordinates
+    # walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
     "*** YOUR CODE HERE ***"
     if len(state[1])!=0:    #if all corners have been visited return 0
         # return max([manhattan_general(state[0], corner) for corner in list(state[1])])
@@ -405,7 +406,6 @@ def cornersHeuristic(state, problem):
             if cost>to_ret:
                 to_ret=cost
         return to_ret
-
     return 0
 
 class AStarCornersAgent(SearchAgent):
@@ -512,7 +512,6 @@ class ClosestDotSearchAgent(SearchAgent):
         print "registerInitialState me currentstate",currentState
         while(currentState.getFood().count() > 0):
             nextPathSegment = self.findPathToClosestDot(currentState) # The missing piece
-            print "to nextPathSegment einai", nextPathSegment
             self.actions += nextPathSegment
             for action in nextPathSegment:
                 legal = currentState.getLegalActions()
