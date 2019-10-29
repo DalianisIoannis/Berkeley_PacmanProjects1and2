@@ -76,12 +76,10 @@ def DFS_BFS(problem,data_structure):#used for implementing DFS and BFS
     f=1 #cost of movement
     first_node = problem.getStartState()
     data_structure.push(  (first_node, list(), f)  )
-    # data_structure.push(  [(first_node, list(), f)]  )
     #in the beginning list of actions is empty
     while not data_structure.isEmpty():
         node_popped=data_structure.pop()
-        if problem.isGoalState(node_popped[0]):     #have i found node i am loooking for?
-            # print "o typos", type(node_popped[1])
+        if problem.isGoalState(node_popped[0]): #have i found node i am loooking for?
             return node_popped[1]    #return total movements for reaching node
         if node_popped[0] not in have_visited:
             have_visited[ node_popped[0] ]="Visited"
@@ -98,10 +96,8 @@ def DFS_BFS(problem,data_structure):#used for implementing DFS and BFS
 def depthFirstSearch(problem):
     """
     Search the deepest nodes in the search tree first.
-
     Your search algorithm needs to return a list of actions that reaches the
     goal. Make sure to implement a graph search algorithm.
-
     To get started, you might want to try some of these simple commands to
     understand the search problem that is being passed in:
     
@@ -109,15 +105,12 @@ def depthFirstSearch(problem):
     print "Is the start a goal?", problem.isGoalState(problem.getStartState())
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
-    "*** YOUR CODE HERE ***"
-    #if i do the helping prints in the executable code the result is shown to be wrong
     my_stack = util.Stack() #DFS works with the logic of a stack
     return DFS_BFS(problem,my_stack)
     # util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
     my_queue = util.Queue() #BFS works with the logic of a queue
     return DFS_BFS(problem,my_queue)
     # util.raiseNotDefined()
@@ -136,7 +129,7 @@ def Implementation_withPQ(problem, heuristic=nullHeuristic):
     have_visited=dict() #closed_list for aStarSearch
     f=0 #first cost is 0 as is first priority
     item_no_one = (problem.getStartState() ,list() , f)
-    my_PQ.push(item_no_one , f)
+    my_PQ.update(item_no_one , f)
     while not my_PQ.isEmpty():
         #node_popped is node q for aStarSearch
         node_popped=my_PQ.pop() #take node with smallest priority
@@ -148,7 +141,6 @@ def Implementation_withPQ(problem, heuristic=nullHeuristic):
                 if adjacent_node[0]:    #not_empty
                     if adjacent_node[0] not in have_visited:
                         temp_list=list()    #used to store all movements+the last one
-                        
                         new_weight=node_popped[2]+adjacent_node[2]
                         #new_weight is cost of popped+cost of child
                         #new_weight is value g for aStarSearch
@@ -159,25 +151,12 @@ def Implementation_withPQ(problem, heuristic=nullHeuristic):
                             temp_list.append(i)
                         temp_list.append(adjacent_node[1])
                         my_PQ.update( (adjacent_node[0],temp_list,new_weight),new_f ) 
-                        # my_PQ.push( (adjacent_node[0],temp_list,new_weight),new_f )
     return None #no result
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
-    ####################################################################################
-    #####
-    # starting from the second node because i don't want the first action
-    # action_so_far=lambda path: problem.getCostOfActions([x[1] for x in path][1:])
-    #isos kai [:]
-    #explanation of lamba function: given the actions_made, means total of movements
-    #  so far(i[1]) from the current node compute the cost of those actions
-    # my_PQ = util.PriorityQueueWithFunction(action_so_far)
-    # return GenericSearch(problem, my_PQ)
-    # return DFS_BFS(problem,my_PQ)
-    ####################################################################################
     return Implementation_withPQ(problem)
-    # # util.raiseNotDefined()
+    # util.raiseNotDefined()
 
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
