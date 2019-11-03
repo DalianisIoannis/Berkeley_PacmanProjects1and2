@@ -299,9 +299,7 @@ class CornersProblem(search.SearchProblem):
         # Hint: The only parts of the game state you need 
         # to reference in your implementation are the starting Pacman position and the
         #  location of the four corners.
-
         return (self.startingPosition , self.corners_to_pop)
-        # return self.startingPosition , ()
         # util.raiseNotDefined()
 
     def isGoalState(self, state):
