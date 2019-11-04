@@ -397,9 +397,8 @@ def cornersHeuristic(state, problem):
     # walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
     "*** YOUR CODE HERE ***"
     if len(state[1])!=0:    #if all corners have been visited return 0
-        # return max([manhattan_general(state[0], corner) for corner in list(state[1])])
-        to_ret=manhattan_general(state[0], state[1][0])
-        for corner in list(state[1])[1:]:
+        to_ret=manhattan_general(state[0], state[1][0]) #first corner
+        for corner in list(state[1])[1:]:   #every other corner
             cost=manhattan_general(state[0], corner)
             if cost>to_ret:
                 to_ret=cost
