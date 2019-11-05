@@ -296,9 +296,8 @@ class CornersProblem(search.SearchProblem):
         space)
         """
         "*** YOUR CODE HERE ***"
-        # Hint: The only parts of the game state you need 
-        # to reference in your implementation are the starting Pacman position and the
-        #  location of the four corners.
+        # Hint: The only parts of the game state you need to reference in your implementation 
+        # are the starting Pacman position and the location of the four corners.
         return (self.startingPosition , self.corners_to_pop)
         # util.raiseNotDefined()
 
@@ -506,7 +505,6 @@ class ClosestDotSearchAgent(SearchAgent):
     def registerInitialState(self, state):
         self.actions = []
         currentState = state
-        print "registerInitialState me currentstate",currentState
         while(currentState.getFood().count() > 0):
             nextPathSegment = self.findPathToClosestDot(currentState) # The missing piece
             self.actions += nextPathSegment
@@ -525,9 +523,9 @@ class ClosestDotSearchAgent(SearchAgent):
         gameState.
         """
         # Here are some useful elements of the startState
-        startPosition = gameState.getPacmanPosition()
-        food = gameState.getFood()
-        walls = gameState.getWalls()
+        # startPosition = gameState.getPacmanPosition()
+        # food = gameState.getFood()
+        # walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState)
         "*** YOUR CODE HERE ***"
         return search.breadthFirstSearch(problem)
@@ -547,7 +545,6 @@ class AnyFoodSearchProblem(PositionSearchProblem):
     You can use this search problem to help you fill in the findPathToClosestDot
     method.
     """
-
     def __init__(self, gameState):
         "Stores information from the gameState.  You don't need to change this."
         # Store the food for later reference
@@ -566,10 +563,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         """
         # x,y = state
         "*** YOUR CODE HERE ***"
-        flag = False
-        if state in self.food.asList():
-            flag=True
-        return flag
+        return state in self.food.asList()
         # util.raiseNotDefined()
 
 def mazeDistance(point1, point2, gameState):
@@ -577,9 +571,7 @@ def mazeDistance(point1, point2, gameState):
     Returns the maze distance between any two points, using the search functions
     you have already built. The gameState can be any game state -- Pacman's
     position in that state is ignored.
-
     Example usage: mazeDistance( (2,4), (5,6), gameState)
-
     This might be a useful helper function for your ApproximateSearchAgent.
     """
     x1, y1 = point1
